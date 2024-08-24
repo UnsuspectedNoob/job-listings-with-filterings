@@ -1,33 +1,62 @@
 import React, { useEffect, useState } from "react";
-/*
-  "id": 1,
-  "company": "Photosnap",
-  "logo": "./images/photosnap.svg",
-  "new": true,
-  "featured": true,
-  "position": "Senior Frontend Developer",
-  "role": "Frontend",
-  "level": "Senior",
-  "postedAt": "1d ago",
-  "contract": "Full Time",
-  "location": "USA Only",
-  "languages": ["HTML", "CSS", "JavaScript"],
-  "tools": []
- */
+import { headerMobile } from "./assets/images";
+import JobListing from "./components/JobListing";
+import FilteringProvider from "./contexts/FilteringProvider";
 
 function App() {
-  const [jobs, setJobs] = useState([]);
+  const [job, setJob] = useState([]);
 
-  // Initialize Jobs Array.
+  // Initialize Jobs and Filtered Arrays.
   useEffect(() => {
     fetch("/data.json")
       .then((response) => response.json())
       .then((data) => {
-        setJobs(data);
+        setJob(data);
       });
   }, []);
 
-  return <div className="text-3xl text-primary-dsatd-cyan">App</div>;
+  // Check Filters
+
+  return (
+    <div>
+      <FilteringProvider>
+        {/* Image Header Container */}
+        <div className="bg-primary-dsatd-cyan mb-14 h-[156px]">
+          <img
+            src={headerMobile}
+            alt="header image"
+            className="object-right h-full object-cover"
+          />
+        </div>
+
+        {/* Filters Section */}
+        <div></div>
+
+        {/* Filterings Container */}
+        <div className="flex flex-col gap-y-10 px-6">
+          {job.map((job) => (
+            <JobListing
+              company={job.company}
+              contract={job.contract}
+              featured={job.featured}
+              location={job.location}
+              logo={job.logo}
+              neW={job["new"]}
+              position={job.position}
+              postedAt={job.postedAt}
+              key={job.id}
+              filterArray={[
+                job.role,
+                job.level,
+                ...job.languages,
+                ...job.tools,
+              ]}
+            />
+          ))}
+        </div>
+      </FilteringProvider>
+    </div>
+  );
 }
 
 export default App;
