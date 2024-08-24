@@ -11,9 +11,9 @@ function JobListing() {
         <div
           key={job.id}
           className={`relative flex flex-col gap-y-3 bg-white px-6 pb-6 border border-transparent ${
-            job.new && job.featured
-              ? "border-l-[6px] border-l-primary-dsatd-cyan"
-              : ""
+            job.new &&
+            job.featured &&
+            "border-l-[6px] border-l-primary-dsatd-cyan"
           } rounded-md`}
         >
           <div className="absolute w-12 h-12 -translate-y-1/2">
