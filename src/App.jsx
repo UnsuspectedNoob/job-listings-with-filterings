@@ -1,60 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { headerMobile } from "./assets/images";
+import React, { useEffect, useContext } from "react";
 import JobListing from "./components/JobListing";
-import FilteringProvider from "./contexts/FilteringProvider";
+import { headerMobile } from "./assets/images";
 
 function App() {
-  const [job, setJob] = useState([]);
+  const { setJobs } = useContext(FilteringContext);
 
-  // Initialize Jobs and Filtered Arrays.
+  // Initialize Jobs Array
   useEffect(() => {
     fetch("/data.json")
       .then((response) => response.json())
       .then((data) => {
-        setJob(data);
+        setJobs(data);
       });
-  }, []);
-
-  // Check Filters
+  }, [setJobs]);
 
   return (
     <div>
-      <FilteringProvider>
-        {/* Image Header Container */}
-        <div className="bg-primary-dsatd-cyan mb-14 h-[156px]">
-          <img
-            src={headerMobile}
-            alt="header image"
-            className="object-right h-full object-cover"
-          />
-        </div>
+      {/* Image Header Container */}
+      <div className="bg-primary-dsatd-cyan mb-14 h-[156px]">
+        <img
+          src={headerMobile}
+          alt="header image"
+          className="object-right h-full object-cover"
+        />
+      </div>
 
-        {/* Filters Section */}
-        <div></div>
-
-        {/* Filterings Container */}
-        <div className="flex flex-col gap-y-10 px-6">
-          {job.map((job) => (
-            <JobListing
-              company={job.company}
-              contract={job.contract}
-              featured={job.featured}
-              location={job.location}
-              logo={job.logo}
-              neW={job["new"]}
-              position={job.position}
-              postedAt={job.postedAt}
-              key={job.id}
-              filterArray={[
-                job.role,
-                job.level,
-                ...job.languages,
-                ...job.tools,
-              ]}
-            />
-          ))}
-        </div>
-      </FilteringProvider>
+      {/* Filtered Job Listings */}
+      <JobListing />
     </div>
   );
 }
