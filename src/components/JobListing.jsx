@@ -6,7 +6,7 @@ function JobListing() {
   const { filteredArray } = useContext(FilteringContext);
 
   return (
-    <div className="flex flex-col gap-y-10 px-6">
+    <div className="flex flex-col gap-y-10 pb-8">
       {filteredArray.map((job) => (
         <div
           key={job.id}
@@ -14,7 +14,7 @@ function JobListing() {
             job.new &&
             job.featured &&
             "border-l-[6px] border-l-primary-dsatd-cyan"
-          } rounded-md`}
+          } rounded-md shadow-xl`}
         >
           <div className="absolute w-12 h-12 -translate-y-1/2">
             <img src={job.logo} alt="profile icon" />

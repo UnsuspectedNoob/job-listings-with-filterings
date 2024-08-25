@@ -9,7 +9,7 @@ function SetFilter({ filter }) {
       className="bg-neutral-lg-cyan-filter px-2 py-1 rounded-md font-bold text-primary-dsatd-cyan cursor-pointer"
       onClick={() => {
         if (filters.includes(filter)) {
-          setFilters(filters.filter((f) => f !== filter));
+          console.log("Filter already included.");
         } else {
           setFilters([...filters, filter]);
         }
