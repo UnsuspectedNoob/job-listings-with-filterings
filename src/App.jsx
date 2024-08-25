@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import JobListing from "./components/JobListing";
-import { headerMobile } from "./assets/images";
+import { headerDesktop, headerMobile } from "./assets/images";
 import { FilteringContext } from "./contexts/FilteringProvider";
 import FilterTag from "./components/FilterTag";
 
@@ -27,7 +27,12 @@ function App() {
         <img
           src={headerMobile}
           alt="header image"
-          className="object-right h-full object-cover"
+          className="object-right md:hidden h-full object-cover"
+        />
+        <img
+          src={headerDesktop}
+          alt="header image"
+          className="md:block object-left hidden w-full h-full object-cover"
         />
       </div>
 
