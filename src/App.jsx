@@ -14,7 +14,7 @@ function App() {
       .then((data) => {
         setJobs(data);
       });
-  }, [setJobs]);
+  }, []);
 
   return (
     <div>
@@ -32,7 +32,7 @@ function App() {
       </div>
 
       {/* Filtered Job Listings */}
-      <div className="px-6">
+      <div className="mx-auto px-6 max-w-[1110px]">
         {/* Filter Tags */}
         {filters.length > 0 && (
           <div className="relative bg-white p-6 rounded-[4px] -translate-y-1/2">
@@ -43,7 +43,10 @@ function App() {
                 ))}
               </div>
 
-              <button className="ml-4" onClick={() => setFilters([])}>
+              <button
+                className="ml-4 hover:text-primary-dsatd-cyan hover:underline"
+                onClick={() => setFilters([])}
+              >
                 Clear
               </button>
             </div>

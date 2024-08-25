@@ -10,7 +10,7 @@ function FilterTag({ name }) {
         {name}
       </p>
       <div
-        className="flex bg-primary-dsatd-cyan px-2 self-stretch"
+        className="flex bg-primary-dsatd-cyan hover:bg-neutral-vdg-cyan px-2 cursor-pointer self-stretch"
         onClick={() => setFilters(filters.filter((filter) => filter !== name))}
       >
         <img className="self-center" src={iconRemove} alt="remove icon" />

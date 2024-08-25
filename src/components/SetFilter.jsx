@@ -6,10 +6,9 @@ function SetFilter({ filter }) {
 
   return (
     <div
-      className="bg-neutral-lg-cyan-filter px-2 py-1 rounded-md font-bold text-primary-dsatd-cyan cursor-pointer"
+      className="bg-neutral-lg-cyan-filter hover:bg-primary-dsatd-cyan px-2 py-1 rounded-md font-bold text-primary-dsatd-cyan hover:text-white cursor-pointer"
       onClick={() => {
         if (filters.includes(filter)) {
-          console.log("Filter already included.");
         } else {
           setFilters([...filters, filter]);
         }
